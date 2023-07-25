@@ -27,12 +27,10 @@ var compile = async (pageName, target, source) => {
         "./pages/", source + ".html"
     );
 
-    console.time("- Timer");
-
     fse.removeSync(path.join(SITE_NAME, "/static/"));
     fse.copySync("./static", path.join(SITE_NAME, "/static/"));
     //
-    console.log("Cloned static files");
+    console.log("- Cloned static files");
 
     /** the structure HTML @constant @type {string} */
     const structure = fse.readFileSync("./static/structure.html").toString();
@@ -70,7 +68,7 @@ var compile = async (pageName, target, source) => {
     console.log("- Loaded JS files");
 
     pageData += HTMLGenerator.title(`${pageName} | 建北電資 28th`);
-    pageData += HTMLGenerator.icon("/static/icons/chicken.png");
+    pageData += HTMLGenerator.icon("/static/icons/chicken.ico");
 
     /** output HTML @type {string} */
     const output = structure
@@ -88,7 +86,6 @@ var compile = async (pageName, target, source) => {
     );
     //
     console.log("- Done");
-    console.timeLog("- Timer");
 };
 
 (async () => {
@@ -103,12 +100,12 @@ var compile = async (pageName, target, source) => {
 
         const [ pageName, target, source ] = compilerText.split(/\r\n|\r|\n/g);
 
-        console.log(`Compiling no.${i}`)
+        console.log(`Compiling no.${i}`);
         //
-        compile(pageName, target, source);
+        await compile(pageName, target, source);
 
         n++;
     }
-
+    //
     console.log(`Compiled ${n} files`);
 })();
