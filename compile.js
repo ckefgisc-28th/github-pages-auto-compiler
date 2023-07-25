@@ -2,8 +2,7 @@ const std = require("stdio");
 
 const fse = require("fs-extra"), path = require("node:path");
 
-const HTMLGenerator  = require("./js-modules/html-generator.js"),
-      HTMLBeautifier = require("./js-modules/html-generator.js");
+const HTMLGenerator  = require("./js-modules/html-generator.js");
 
 /** the folder name of the github repo @constant @type {string} */
 const SITE_NAME = "ckefgisc-28th.github.io";
@@ -82,8 +81,6 @@ var compile = async (pageName, target, source) => {
         .replace("%page-header%",  pageHeader)
         .replace("%page-content%", pageContent)
         .replace("%page-footer%",  pageFooter);
-
-    output = HTMLBeautifier.from(output);
 
     fse.writeFileSync(
         outputPath, 
