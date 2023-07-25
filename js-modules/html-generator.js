@@ -25,5 +25,5 @@ module.exports = class HTMLGenerator {
      * @param {path} path the path to local file
      * @returns {string} the icon import statement
      */
-    static icon = (path) => `<link rel="shortcut icon" href="${path}" type="image/x-icon" />\n`;
+    static icon = (path) => `<link rel="shortcut icon" href="${path}" type="image/ico" />\n`;
 }
