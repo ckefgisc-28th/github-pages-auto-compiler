@@ -63,7 +63,7 @@ var compile = async (pageName, target, source) => {
         if (path.extname(jsFile) !== ".js")
             continue;
 
-        jsImport += HTMLGenerator.css(`/static/js/${jsFile}`);
+        jsImport += HTMLGenerator.js(`/static/js/${jsFile}`);
         // jsImport += `<script>${fse.readFileSync(`./static/js/${jsFile}`)}</script>`;
     }
     //
