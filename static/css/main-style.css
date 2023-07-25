@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
-header, footer {
-    background: #eee;
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-wrapper {
+    flex-grow: 1;
 }

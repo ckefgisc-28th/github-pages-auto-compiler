@@ -7,6 +7,9 @@ const HTMLGenerator  = require("./js-modules/html-generator.js");
 /** the folder name of the github repo @constant @type {string} */
 const SITE_NAME = "ckefgisc-28th.github.io";
 
+/** read inner css & js data / use import @constant @type {boolean} */
+const USE_RAW = true;
+
 /**
  * 
  * @param {string} pageName the page title
@@ -51,8 +54,10 @@ var compile = async (pageName, target, source) => {
         if (path.extname(cssFile) !== ".css")
             continue;
 
-        cssImport += HTMLGenerator.css(`/static/css/${cssFile}`);
-        // cssImport += `<style>${fse.readFileSync(`./static/css/${cssFile}`)}</style>`;
+        if (USE_RAW)
+            cssImport += HTMLGenerator.rawCss(`./static/css/${cssFile}`);
+        else
+            cssImport += HTMLGenerator.css(`/static/css/${cssFile}`);
     }
     //
     console.log("- Loaded CSS files");
@@ -61,8 +66,10 @@ var compile = async (pageName, target, source) => {
         if (path.extname(jsFile) !== ".js")
             continue;
 
-        jsImport += HTMLGenerator.js(`/static/js/${jsFile}`);
-        // jsImport += `<script>${fse.readFileSync(`./static/js/${jsFile}`)}</script>`;
+        if (USE_RAW)
+            jsImport += HTMLGenerator.rawJs(`./static/js/${jsFile}`);
+        else
+            jsImport += HTMLGenerator.js(`/static/js/${jsFile}`);
     }
     //
     console.log("- Loaded JS files");
