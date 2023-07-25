@@ -70,7 +70,7 @@ var compile = async (pageName, target, source) => {
     console.log("- Loaded JS files");
 
     pageData += HTMLGenerator.title(`${pageName} | 建北電資 28th`);
-    pageData += HTMLGenerator.icon("/static/images/chicken.png");
+    pageData += HTMLGenerator.icon("/static/icons/chicken.png");
 
     /** output HTML @type {string} */
     const output = structure
