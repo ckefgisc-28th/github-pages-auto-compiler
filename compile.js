@@ -29,12 +29,10 @@ var compile = async (pageName, target, source) => {
 
     console.time("- Timer");
 
-    if (false) {
-        fse.removeSync(path.join(SITE_NAME, "/static/"));
-        fse.copySync("./static", path.join(SITE_NAME, "/static/"));
-        //
-        console.log("Cloned static files");
-    }
+    fse.removeSync(path.join(SITE_NAME, "/static/"));
+    fse.copySync("./static", path.join(SITE_NAME, "/static/"));
+    //
+    console.log("Cloned static files");
 
     /** the structure HTML @constant @type {string} */
     const structure = fse.readFileSync("./static/structure.html").toString();
@@ -55,7 +53,8 @@ var compile = async (pageName, target, source) => {
         if (path.extname(cssFile) !== ".css")
             continue;
 
-        cssImport += `<style>${fse.readFileSync(`./static/css/${cssFile}`)}</style>`;
+        cssImport += HTMLGenerator.css(`/static/css/${cssFile}`);
+        // cssImport += `<style>${fse.readFileSync(`./static/css/${cssFile}`)}</style>`;
     }
     //
     console.log("- Loaded CSS files");
@@ -64,7 +63,8 @@ var compile = async (pageName, target, source) => {
         if (path.extname(jsFile) !== ".js")
             continue;
 
-        jsImport += `<script>${fse.readFileSync(`./static/js/${jsFile}`)}</script>`;
+        jsImport += HTMLGenerator.css(`/static/js/${jsFile}`);
+        // jsImport += `<script>${fse.readFileSync(`./static/js/${jsFile}`)}</script>`;
     }
     //
     console.log("- Loaded JS files");
