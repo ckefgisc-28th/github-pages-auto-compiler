@@ -40,6 +40,8 @@ var compile = async (pageName, target, source) => {
     //
     console.log("- Loaded page structure");
 
+    console.log("- Loading HTML files");
+    //
     /** the placeholders in structure.html @type {string} */
     var cssImport = "",
         jsImport = "",
@@ -47,9 +49,9 @@ var compile = async (pageName, target, source) => {
         pageHeader = fse.readFileSync("./static/html/page-header.html"),
         pageContent = fse.readFileSync(resourcePath),
         pageFooter = fse.readFileSync("./static/html/page-footer.html");
-    //
-    console.log("- Loaded HTML files")
 
+    console.log("- Loading CSS files");
+    //
     for (let cssFile of fse.readdirSync("./static/css")) {
         if (path.extname(cssFile) !== ".css")
             continue;
@@ -58,10 +60,12 @@ var compile = async (pageName, target, source) => {
             cssImport += HTMLGenerator.rawCss(`./static/css/${cssFile}`);
         else
             cssImport += HTMLGenerator.css(`/static/css/${cssFile}`);
+        //
+        console.log(`  - Added ${cssFile}`);
     }
-    //
-    console.log("- Loaded CSS files");
 
+    console.log("- Loaded JS files");
+    //
     for (let jsFile of fse.readdirSync("./static/js")) {
         if (path.extname(jsFile) !== ".js")
             continue;
@@ -70,9 +74,9 @@ var compile = async (pageName, target, source) => {
             jsImport += HTMLGenerator.rawJs(`./static/js/${jsFile}`);
         else
             jsImport += HTMLGenerator.js(`/static/js/${jsFile}`);
+        //
+        console.log(`  - Added ${jsFile}`);
     }
-    //
-    console.log("- Loaded JS files");
 
     pageData += HTMLGenerator.title(`${pageName} | 建北電資 28th`);
     pageData += HTMLGenerator.icon("/static/icons/chicken.ico");
@@ -114,5 +118,5 @@ var compile = async (pageName, target, source) => {
         n++;
     }
     //
-    console.log(`Compiled ${n} files`);
+    console.log(`Compiled ${n} pages`);
 })();
