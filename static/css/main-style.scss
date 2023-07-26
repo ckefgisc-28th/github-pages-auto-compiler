@@ -10,6 +10,17 @@
     --color-lightgray: #e4e2de;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+p, a, input, label, textarea, span, ul, li {
+	font-family: 'Open Sans', sans-serif;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+
 body {
     width: 100vw;
     height: 100vh;
