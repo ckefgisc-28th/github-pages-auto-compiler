@@ -12,24 +12,11 @@ const USE_RAW = true;
 
 /**
  * 
- * @param {string} pageName the page title
- * @param {string} target the target web page
- * @param {string} source the source HTML file name
+ * @param {string} pageName the page name
+ * @param {string} outputPath the file to write
+ * @param {string} resourcePath the content HTML file
  */
-var compile = async (pageName, target, source) => {
-    if (target.startsWith("/"))
-        target = target.slice(1);
-
-    /** the output HTML file path @constant @type {string} */
-    const outputPath = path.resolve(
-        "./", SITE_NAME, target, "index.html"
-    );
-
-    /** the resource HTML file @conetant @type {string} */
-    const resourcePath = path.resolve(
-        "./pages/", source + ".html"
-    );
-
+var prototypeCompile = async (pageName, outputPath, resourcePath) => {
     fse.removeSync(path.join(SITE_NAME, "/static/"));
     fse.copySync("./static", path.join(SITE_NAME, "/static/"));
     //
@@ -93,15 +80,41 @@ var compile = async (pageName, target, source) => {
         .replace("%page-content%",   pageContent)
         .replace("%page-footer%",    pageFooter);
 
+    fse.mkdirSync(path.dirname(outputPath), { recursive: true });
     fse.writeFileSync(
         outputPath, 
-        output
+        output,
     );
     //
     console.log("- Done");
+}
+
+/**
+ * 
+ * @param {string} pageName the page title
+ * @param {string} target the target web page
+ * @param {string} source the source HTML file name
+ */
+var compile = async (pageName, target, source) => {
+    if (target.startsWith("/"))
+        target = target.slice(1);
+
+    /** the output HTML file path @constant @type {string} */
+    const outputPath = path.resolve(
+        "./", SITE_NAME, target, "index.html"
+    );
+
+    /** the resource HTML file @conetant @type {string} */
+    const resourcePath = path.resolve(
+        "./pages/", source + ".html"
+    );
+
+    prototypeCompile(pageName, outputPath, resourcePath);
 };
 
 (async () => {
+    /** compile 404 page */
+    prototypeCompile("錯誤", `./${SITE_NAME}/404.html`, "./pages/not-found.html");
     /** how many files are compiled @type {number} */
     var n = 0;
 
