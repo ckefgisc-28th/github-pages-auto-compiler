@@ -9,6 +9,11 @@
     --color-white-soft: #f1f0ef;
     --color-dark: #363636;
     --color-lightgray: #e4e2de;
+    --color-selection: #e2d7c0aa;
+}
+
+::selection {
+    background: var(--color-selection);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -83,4 +88,14 @@ $section-title-skew: 30;
         padding-left: #{$i}em;
         padding-right: #{$i}em;
     }
+}
+
+.title-bar {
+    font-size: 2em;
+    width: 100%;
+    padding: .8em;
+    text-align: center;
+    color: var(--color-dark);
+    background-color: var(--color-secondary);
+    margin-bottom: 2em;
 }
