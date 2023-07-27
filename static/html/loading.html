@@ -1,0 +1,43 @@
+<style>
+    .loading-screen-class {
+        display: none;
+    }
+</style>
+<style class="loading-screen-style">
+    #loading-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--color-white);
+        z-index: 32767;
+    }
+
+    .main-wrapper {
+        display: none;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotateZ(0deg);
+        }
+        to {
+            transform: rotateZ(360deg);
+        }
+    }
+
+    #loading-screen-spinner {
+        width: 25vh;
+        height: 25vh;
+        border-top: 3px solid var(--color-dark);
+        border-radius: 50%;
+        animation: 1s linear forwards infinite spin;
+    }
+</style>
+<div id="loading-screen" class="loading-screen-class">
+    <div id="loading-screen-spinner">
+        
+    </div>
+</div>

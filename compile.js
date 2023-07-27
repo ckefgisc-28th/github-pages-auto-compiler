@@ -46,6 +46,7 @@ var compile = async (pageName, target, source) => {
     var cssImport = "",
         jsImport = "",
         pageData = "",
+        loadingScreen = fse.readFileSync("./static/html/loading.html"),
         pageHeader = fse.readFileSync("./static/html/page-header.html"),
         pageContent = fse.readFileSync(resourcePath),
         pageFooter = fse.readFileSync("./static/html/page-footer.html");
@@ -83,13 +84,14 @@ var compile = async (pageName, target, source) => {
 
     /** output HTML @type {string} */
     const output = structure
-        .replace("%css-import%",   cssImport)
-        .replace("%js-import%",    jsImport)
-        .replace("%css-import%",   cssImport)
-        .replace("%page-data%",    pageData)
-        .replace("%page-header%",  pageHeader)
-        .replace("%page-content%", pageContent)
-        .replace("%page-footer%",  pageFooter);
+        .replace("%css-import%",     cssImport)
+        .replace("%js-import%",      jsImport)
+        .replace("%css-import%",     cssImport)
+        .replace("%page-data%",      pageData)
+        .replace("%loading-screen%", loadingScreen)
+        .replace("%page-header%",    pageHeader)
+        .replace("%page-content%",   pageContent)
+        .replace("%page-footer%",    pageFooter);
 
     fse.writeFileSync(
         outputPath, 
