@@ -19,7 +19,7 @@ p, a, input, label, textarea, span, ul, li {
 }
 
 a {
-  color: black;
+  color: var(--color-dark);
   text-decoration: none;
 }
 
@@ -37,6 +37,7 @@ body {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth !important;
 }
 
 .page-content-wrapper {
@@ -50,4 +51,19 @@ body {
 .clean-link {
   text-decoration: none;
   color: unset;
+}
+
+.section-title {
+  display: flex;
+  margin: 1em auto;
+  font-size: 1.2em;
+  width: 6em;
+  height: 1.8em;
+  transform: skewX(-30deg);
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title > * {
+  transform: skewX(30deg);
 }/*# sourceMappingURL=main-style.css.map */

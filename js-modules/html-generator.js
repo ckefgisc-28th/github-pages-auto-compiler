@@ -23,7 +23,7 @@ module.exports = class HTMLGenerator {
      * @returns {string} the js import statement
      */
     static js = (path) => `<!-- generated from ${path} -->
-        <script src="${path}"></script>\n`;
+        <script src="${path}" defer="defer"></script>\n`;
 
     /**
      * @param {path} path the path to local file

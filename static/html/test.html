@@ -1,0 +1,51 @@
+<style>
+    .icon {
+        font-size: 1.4rem;
+        font-family: 'Space Mono', monospace;
+        padding: 0.2em 1em;
+        display: flex;
+        width: fit-content;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon-image, .icon-text {
+        display: flex;
+        width: fit-content;
+        align-items: end;
+    }
+
+    .icon-text > * {
+        display: inline-block;
+        transition: 500ms;
+        overflow-x: hidden;
+        white-space: nowrap;
+    }
+    .icon .hover-to-show, .icon:hover .hover-to-hide {
+        width: 0;
+        opacity: 0;
+    }
+    .icon:hover .hover-to-show, .icon .hover-to-hide {
+        width: 2.45em;
+        opacity: 1;
+    }
+    .icon:hover .hover-to-show.long {
+        width: 5.75em;
+    }
+</style>
+<a class="navbar-brand" href="/">
+    <div class="icon">
+        <div class="icon-image">
+            <img src="/static/images/ckeisc_mouse.png" height="40" />
+            <img src="/static/images/x.png" height="40" />
+            <img src="/static/images/fgisc_star.png" height="40" />
+        </div>
+        <div class="icon-text">
+            <span>&nbspCKE</span>
+            <span class="hover-to-show long">ISC 43<sup><small>rd</small></sup> x&nbsp</span>
+            <span>FGISC&nbsp</span>
+            <span class="hover-to-show">37<sup><small>th</small></sup></span>
+            <span class="hover-to-hide">28<sup><small>th</small></sup></span>
+        </div>
+    </div>
+</a>

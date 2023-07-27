@@ -1,9 +1,44 @@
-header nav img {
-  width: 130px;
-}
-
 header nav li {
   margin: 0px 16px;
   font-size: 20px;
   font-weight: 600;
+}
+
+.icon {
+  font-size: 1.4rem;
+  font-family: "Space Mono", monospace;
+  padding: 0.2em 1em;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-image, .icon-text {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-items: end;
+}
+
+.icon-text > * {
+  display: inline-block;
+  transition: 500ms;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.icon .hover-to-show, .icon:hover .hover-to-hide {
+  width: 0;
+  opacity: 0;
+}
+
+.icon:hover .hover-to-show, .icon .hover-to-hide {
+  width: 2.25em;
+  opacity: 1;
+}
+
+.icon:hover .hover-to-show.long {
+  width: 4.65em;
 }/*# sourceMappingURL=header.css.map */

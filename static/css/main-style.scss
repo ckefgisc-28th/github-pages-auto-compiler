@@ -17,7 +17,7 @@ p, a, input, label, textarea, span, ul, li {
 	font-family: 'Open Sans', sans-serif;
 }
 a {
-	color: black;
+	color: var(--color-dark);
 	text-decoration: none;
 }
 
@@ -35,6 +35,7 @@ body {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth !important;
 }
 
 .page-content-wrapper {
@@ -48,4 +49,19 @@ body {
 .clean-link {
     text-decoration: none;
     color: unset;
+}
+
+$section-title-skew: 30;
+.section-title {
+    display: flex;
+    margin: 1em auto;
+    font-size: 1.2em;
+    width: 6em;
+    height: 1.8em;
+    transform: skewX(-#{$section-title-skew}deg);
+    justify-content: center;
+    align-items: center;
+}
+.section-title > * {
+    transform: skewX(#{$section-title-skew}deg);
 }
