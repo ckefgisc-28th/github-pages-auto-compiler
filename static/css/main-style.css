@@ -3,9 +3,10 @@
 }
 
 :root {
-  --color-primary: #ffc869;
+  --color-primary: #feca50;
   --color-secondary: #e7e1d7;
   --color-white: #f8f8f7;
+  --color-white-soft: #f1f0ef;
   --color-dark: #363636;
   --color-lightgray: #e4e2de;
 }
@@ -55,15 +56,71 @@ body {
 
 .section-title {
   display: flex;
-  margin: 1em auto;
-  font-size: 1.2em;
+  margin: 1.6em auto;
+  font-size: 1.4em;
   width: 6em;
-  height: 1.8em;
+  height: 2em;
   transform: skewX(-30deg);
   justify-content: center;
   align-items: center;
+  background: var(--color-primary);
 }
 
 .section-title > * {
   transform: skewX(30deg);
+}
+
+.text-paragraph {
+  padding: 2em 3em;
+  border-radius: 10px;
+  background: var(--color-white-soft);
+}
+
+.text-paragraph h3 {
+  margin-bottom: 0.6em;
+}
+
+.text-paragraph .tab-1 {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.text-paragraph .tab-2 {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.text-paragraph .tab-3 {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.text-paragraph .tab-4 {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.text-paragraph .tab-5 {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.text-paragraph .tab-6 {
+  padding-left: 6em;
+  padding-right: 6em;
+}
+
+.text-paragraph .tab-7 {
+  padding-left: 7em;
+  padding-right: 7em;
+}
+
+.text-paragraph .tab-8 {
+  padding-left: 8em;
+  padding-right: 8em;
+}
+
+.text-paragraph .tab-9 {
+  padding-left: 9em;
+  padding-right: 9em;
 }/*# sourceMappingURL=main-style.css.map */

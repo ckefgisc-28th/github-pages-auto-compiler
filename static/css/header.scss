@@ -12,6 +12,7 @@ header nav li {
 	width: fit-content;
 	flex-direction: column;
 	align-items: center;
+	user-select: none;
 }
 
 .icon-image, .icon-text {

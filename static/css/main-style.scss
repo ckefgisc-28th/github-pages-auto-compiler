@@ -3,9 +3,10 @@
 }
 
 :root {
-    --color-primary: #ffc869;
+    --color-primary: #feca50;
     --color-secondary: #e7e1d7;
     --color-white: #f8f8f7;
+    --color-white-soft: #f1f0ef;
     --color-dark: #363636;
     --color-lightgray: #e4e2de;
 }
@@ -54,14 +55,32 @@ body {
 $section-title-skew: 30;
 .section-title {
     display: flex;
-    margin: 1em auto;
-    font-size: 1.2em;
+    margin: 1.6em auto;
+    font-size: 1.4em;
     width: 6em;
-    height: 1.8em;
+    height: 2em;
     transform: skewX(-#{$section-title-skew}deg);
     justify-content: center;
     align-items: center;
+    background: var(--color-primary);
 }
 .section-title > * {
     transform: skewX(#{$section-title-skew}deg);
+}
+
+.text-paragraph {
+    padding: 2em 3em;
+    border-radius: 10px;
+    background: var(--color-white-soft);
+}
+
+.text-paragraph h3 {
+    margin-bottom: 0.6em;
+}
+
+@for $i from 1 to 10 {
+    .text-paragraph .tab-#{$i} {
+        padding-left: #{$i}em;
+        padding-right: #{$i}em;
+    }
 }
