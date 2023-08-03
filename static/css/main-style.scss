@@ -62,7 +62,7 @@ $section-title-skew: 30;
     display: flex;
     margin: 1.6em auto;
     font-size: 1.4em;
-    width: 6em;
+    width: fit-content;
     height: 2em;
     transform: skewX(-#{$section-title-skew}deg);
     justify-content: center;
@@ -70,6 +70,7 @@ $section-title-skew: 30;
     background: var(--color-primary);
 }
 .section-title > * {
+    margin: auto 0.5em;
     transform: skewX(#{$section-title-skew}deg);
 }
 
