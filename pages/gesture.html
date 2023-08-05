@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>比手畫腳 | 建北電資 28th</title>
+    </head>
+    <body>
+        <style>
+            input[type="number"] {
+                width: 40px;
+            }
+            .gesture-game-box {
+                margin: 20px auto;
+            }
+            .gesture-game-box > * {
+                display: flex;
+                justify-content: center;
+                margin: 12px auto;
+            }
+            .question-text {
+                font-size: 108px;
+            }
+        </style>
+        <div class="gesture-game-box">
+            <div class="question-text">
+                比手畫腳
+            </div>
+            <div class="timer">
+                <input type="number" id="chunk" min="1" max="0" value="1" />
+                &nbsp;號題庫&nbsp;&nbsp;
+                <input type="number" id="time" min="1" max="60" value="5" />
+                &nbsp;分鐘&nbsp;
+                <input type="button" id="start" onclick="start();" value="開始" />
+            </div>
+            <div class="details">
+                剩餘時間：
+                <span class="time min">0</span>
+                &nbsp;:&nbsp;
+                <span class="time sec">45</span>
+                &nbsp;&nbsp;
+                答對的題目：
+                <span class="score">0</span>
+                &nbsp;&nbsp;
+                <button id="skip" onclick="skip();">跳過</button>
+                &nbsp;
+                <button id="answer" onclick="answer();">答對了</button>
+            </div>
+        </div>
+        <script>
+            var sections = [
+                [
+                    '眼高手低', '靈機應變', '一毛不拔', '火上加油',
+                    '衣架',     '礦泉水',   '圓規',     '電腦',
+                    '春聯',     '兔子',     '青蛙',     '魚',
+                    '痛哭流涕', '毛遂自薦', '籃球員',   '開車',
+                    '大象',     '下班',     '上廁所',   '唱歌',
+                    'CPR',      '按電鈴',   '招計程車', '便祕',
+                    '暈倒',     '打呼',     '拉拉鍊',   '拉小提琴',
+                    '吃餅乾',   '免洗餐具', '體適能',   '打哈欠',
+                    '發抖',     '便利商店', '電梯',     '虛擬實境',
+                    '新冠肺炎', '盲人摸象', '射箭',     '健康操',
+                    '巫婆',     '冷戰',     '悄悄話',   '香菇',
+                    '日曆',     '狙擊手',   '自彈自唱', '獨木舟',
+                    '夜市',     '髮箍',     '摩天輪',   '按摩'
+                ],
+                [
+                    '喋喋不休', '居高臨下', '守口如瓶', '打電動',
+                    '吃飯',     '跳繩',     '喝酒',     '魷魚遊戲',
+                    '塗口紅',   '打排球',   '自由式',   '聽音樂',
+                    '刷牙',     '車禍',     '皮卡丘',   '彩虹',
+                    '魔術方塊', '流星',     '販賣機',   '髮捲',
+                    '腮紅',     '蠟燭',     '斑馬線',   '耳環',
+                    '龍捲風',   '圓周率',   '聖誕老人', '抽血',
+                    '情侶',     '撐陽傘',   '立竿見影', '以牙還牙',
+                    '七上八下', '計算機',   '蝴蝶結',   '明星',
+                    '吸管',     '鬼臉',     '全壘打',   '天使',
+                    '水餃',     '電動牙刷', '螢光筆',   '閃電',
+                    '建北電資', '漱口水',   '馬桶刷',   '指甲刀',
+                    '磁鐵',     '可樂',     '海盜船',   '紅包'
+                ]
+            ];
+
+            document.querySelector("input#chunk").setAttribute("max", sections.length);
+
+            var setStyle = (element, key, value) => {
+                element.style[key] = value;
+            };
+
+            var toggle = (selector, show) => {
+                setStyle(
+                    document.querySelector(selector),
+                    "display", (show ? "" : "none")
+                );
+            };
+
+            var setText = (text) => {
+                document.querySelector(".question-text").innerHTML = text;
+            };
+
+            var shuffle = (array) => {
+                for (let i = array.length - 1; i > 0; --i) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [ array[i], array[j] ] = [ array[j], array[i] ];
+                }
+            };
+
+            toggle(".details", false);
+
+            var endTime, endTimeout, index, score, questions;
+
+            var start = () => {
+                var time  = document.querySelector("input#time").value,
+                    chunk = document.querySelector("input#chunk").value - 1;
+
+                index = 0, score = 0, questions = sections[chunk];
+
+                toggle(".timer", false);
+                toggle(".details", true);
+
+                showSmallScore(0);
+
+                shuffle(questions);
+
+                showQuestion(index);
+
+                var delay = time * 60 * 1000;
+                endTime = new Date().getTime() + delay;
+                endTimeout = setTimeout(end, delay);
+            };
+
+            var end = () => {
+                toggle(".timer", true);
+                toggle(".details", false);
+
+                setText(`共答對 ${score} / ${index} 題`);
+            };
+
+            var showQuestion = (index) => {
+                if (index >= questions.length) {
+                    clearTimeout(endTimeout);
+                    end();
+                    return true;
+                }
+
+                setText(questions[index]);
+            };
+
+            var showSmallScore = (score) => {
+                document.querySelector(".score").innerHTML = score;
+            };
+
+            var nextQuestion = () => {
+                index++;
+                showQuestion(index);
+                showSmallScore(score);
+            }
+
+            var skip = () => {
+                nextQuestion();
+            };
+
+            var answer = () => {
+                score++;
+                nextQuestion();
+            };
+
+            var showTime = () => {
+                var timeLeft = new Date(endTime).getTime() - new Date().getTime();
+                timeLeft = Math.ceil(timeLeft / 1000);
+
+                document.querySelector(".time.min").innerHTML = Math.floor(timeLeft / 60);
+                document.querySelector(".time.sec").innerHTML = (timeLeft % 60)
+                    .toString().padStart(2, "0");
+
+                window.requestAnimationFrame(showTime);
+            }
+
+            showTime();
+        </script>
+    </body>
+</html>
